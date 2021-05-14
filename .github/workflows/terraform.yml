@@ -1,0 +1,23 @@
+name: build terraform
+on:
+#  pull_request:
+  push:
+    branch:
+      - master
+
+jobs:
+  build:
+#    env:
+#      DOCKER_REPOSITORY: docker.pkg.github.com
+#      IMAGE: dmc_auth
+#    name: Build and push
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    - name: Install terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.13.0
+    - run: terraform init
